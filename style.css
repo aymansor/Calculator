@@ -1,0 +1,219 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap");
+
+/* =================================================== */
+/* VARIABLES */
+/* =================================================== */
+
+:root {
+  font-size: 18px;
+
+  /* Colors */
+  --clr-bg: hsl(195, 14%, 75%);
+  --clr-text-1: hsl(0, 0%, 0%);
+  --clr-text-2: hsl(0, 0%, 100%);
+  --clr-calculator-body: hsl(240, 7%, 42%);
+  --clr-calculator-display: hsl(125, 38%, 82%);
+  --clr-calculator-btn: hsl(245, 11%, 54%);
+  --clr-calculator-btn-modifier: hsl(237, 34%, 65%);
+  --clr-calculator-btn-clear: hsl(60, 93%, 68%);
+  --clr-calculator-btn-operator: hsl(356, 81%, 71%);
+  --clr-calculator-btn-compute: hsl(125, 38%, 82%);
+
+  /* Font Family */
+  --ff-primary: "Rubik", sans-serif;
+
+  /* Font Size */
+  --fs-small: 1.25rem;
+  --fs-medium: 1.75rem;
+  --fs-large: 3.5rem;
+
+  /* Font Weight */
+  --fw-regular: 400;
+  --fw-bold: 700;
+
+  /* Border Radius */
+  --border-radius-small: 0.5rem;
+  --border-radius-medium: 1rem;
+  --border-radius-large: 2rem;
+  --border-radius-round: 50%;
+
+  /* Spacing: Paddings & Margins */
+  --spacing-small: 0.5rem;
+  --spacing-medium: 1rem;
+  --spacing-large: 2rem;
+
+  --border: 2px solid var(--clr-text-1);
+}
+
+/* =================================================== */
+/* RESET CSS */
+/* https://piccalil.li/blog/a-modern-css-reset */
+/* =================================================== */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin, padding, and font */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body,
+html {
+  height: 100%;
+}
+
+/* Set core body defaults */
+body {
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------------------------------------------------------------- */
+/*                                    BODY                                   */
+/* ------------------------------------------------------------------------- */
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fs-medium);
+  font-family: var(--ff-primary);
+  background-color: var(--clr-bg);
+}
+
+/* ------------------------------------------------------------------------- */
+/*                                 CALCULATOR                                */
+/* ------------------------------------------------------------------------- */
+
+.calculator {
+  background-color: var(--clr-calculator-display);
+  border-radius: var(--border-radius-medium);
+  border: var(--border);
+}
+
+.calculator__display {
+  text-align: right;
+  padding: var(--spacing-medium);
+}
+
+.calculator__display__current {
+  display: block;
+  font-size: var(--fs-large);
+}
+
+.calculator__display__previous {
+  display: block;
+  opacity: 0.8;
+  font-size: var(--fs-small);
+}
+
+.calculator__body {
+  display: grid;
+  grid-template-columns: repeat(4, 5.5rem);
+  grid-template-rows: repeat(5, 5.5rem);
+  background-color: var(--clr-calculator-body);
+  border-radius: var(--spacing-medium);
+  padding: var(--spacing-small);
+  outline: var(--border);
+}
+
+.calculator__btn {
+  color: var(--clr-text-2);
+  background-color: var(--clr-calculator-btn);
+  border: 0;
+  margin: var(--spacing-small);
+  border-radius: var(--border-radius-medium);
+  outline: var(--border);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  transition: box-shadow 150ms ease-in-out;
+  opacity: 0.9;
+}
+
+.calculator__btn:active {
+  box-shadow: none;
+}
+
+.calculator__btn:hover {
+  opacity: 1;
+}
+
+.calculator__btn--modifier {
+  background-color: var(--clr-calculator-btn-modifier);
+}
+
+.calculator__btn--clear {
+  color: var(--clr-text-1);
+  background-color: var(--clr-calculator-btn-clear);
+}
+
+.calculator__btn--operator {
+  background-color: var(--clr-calculator-btn-operator);
+}
+
+.calculator__btn--compute {
+  color: var(--clr-text-1);
+  background-color: var(--clr-calculator-btn-compute);
+}
+
+.calculator__credit {
+  text-decoration: none;
+  grid-column: span 4;
+  text-align: center;
+  font-size: 1rem;
+  opacity: 0.5;
+  margin: 0.5rem 0;
+  color: var(--clr-text-2);
+}
+
+.calculator__credit:hover {
+  opacity: 1;
+}
