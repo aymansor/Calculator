@@ -63,8 +63,14 @@ class Calculator {
       this.canReset = false;
     }
 
-    if (value === "." && this.leftOperand.includes(".")) return;
-    this.rightOperand = this.rightOperand + value;
+    if (value === "." && this.rightOperand === "") {
+      this.rightOperand = "0.";
+    } else if (value === "." && this.rightOperand.includes(".")) {
+      return;
+    } else {
+      this.rightOperand = this.rightOperand + value;
+    }
+
     this.displayCurrent.textContent = this.rightOperand;
   }
 
