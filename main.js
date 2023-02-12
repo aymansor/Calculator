@@ -4,7 +4,7 @@ const Operators = Object.freeze({
   ADD: "+",
   SUBTRACT: "-",
   MULTIPLY: "x",
-  DIVIDE: "/",
+  DIVIDE: "÷",
 });
 
 class Calculator {
@@ -15,9 +15,10 @@ class Calculator {
 
     this.displayCurrent.textContent = "0";
 
-    this.previousOperand = "";
-    this.currentOperand = "";
+    this.leftOperand = "";
+    this.rightOperand = "";
     this.operator = "";
+    this.canReset = false;
 
     this.initEventListeners();
   }
@@ -57,65 +58,70 @@ class Calculator {
   }
 
   processDigit(value) {
-    if (value === "." && this.currentOperand.includes(".")) return;
-
-    this.currentOperand = this.currentOperand + value;
-    this.displayCurrent.textContent = this.currentOperand;
-
-    if (this.operator) {
-      this.displayPrevious.textContent = `${this.previousOperand} ${this.operator}`;
+    if (this.canReset) {
+      this.clear();
+      this.canReset = false;
     }
+
+    if (value === "." && this.leftOperand.includes(".")) return;
+    this.rightOperand = this.rightOperand + value;
+    this.displayCurrent.textContent = this.rightOperand;
   }
 
   processOperator(value) {
-    if (this.currentOperand === "") return;
-    if (this.previousOperand !== "") {
-      this.compute();
+    if (this.operator) {
+      this.operator = value;
+      this.rightOperand = "";
+      this.displayPrevious.textContent = `${this.leftOperand} ${this.operator}`;
+    } else {
+      this.operator = value;
+      this.leftOperand = this.rightOperand;
+      this.rightOperand = "";
+      this.displayPrevious.textContent = `${this.leftOperand} ${this.operator}`;
     }
-    this.operator = value;
-    this.previousOperand = this.currentOperand;
-    this.currentOperand = "";
-    this.displayCurrent.textContent = `${this.previousOperand} ${this.operator}`;
   }
 
   clear() {
     this.displayPrevious.textContent = "";
     this.displayCurrent.textContent = "0";
 
-    this.previousOperand = "";
-    this.currentOperand = "";
+    this.leftOperand = "";
+    this.rightOperand = "";
     this.operator = "";
   }
 
   changeSign() {
-    if (this.currentOperand === "") return;
+    if (this.rightOperand === "") return;
 
-    this.currentOperand =
-      this.currentOperand.charAt(0) === "-"
-        ? this.currentOperand.slice(1)
-        : "-" + this.currentOperand;
+    this.rightOperand =
+      this.rightOperand.charAt(0) === "-" ? this.rightOperand.slice(1) : "-" + this.rightOperand;
 
-    this.displayCurrent.textContent = this.currentOperand;
+    this.displayCurrent.textContent = this.rightOperand;
   }
 
   percent() {
-    if (this.currentOperand === "") return;
+    if (this.rightOperand === "") return;
 
-    this.currentOperand = (parseFloat(this.currentOperand) / 100).toString();
-    this.displayCurrent.textContent = this.currentOperand;
+    this.rightOperand = (parseFloat(this.rightOperand) / 100).toString();
+    this.displayCurrent.textContent = this.rightOperand;
   }
 
   delete() {
-    this.currentOperand = this.currentOperand.slice(0, -1);
-    this.displayCurrent.textContent = this.currentOperand || "0";
+    this.rightOperand = this.rightOperand.slice(0, -1);
+    this.displayCurrent.textContent = this.rightOperand || "0";
   }
 
   compute() {
     let result;
-    const prev = parseFloat(this.previousOperand);
-    const curr = parseFloat(this.currentOperand);
+    let prev = parseFloat(this.leftOperand);
+    let curr = parseFloat(this.rightOperand);
 
-    if (isNaN(prev) || isNaN(curr)) return;
+    if (isNaN(prev)) return;
+
+    if (isNaN(curr)) {
+      this.rightOperand = this.leftOperand;
+      curr = parseFloat(this.leftOperand);
+    }
 
     switch (this.operator) {
       case Operators.ADD:
@@ -134,11 +140,10 @@ class Calculator {
         return;
     }
 
-    this.displayPrevious.textContent = `${this.previousOperand} ${this.operator} ${this.currentOperand} =`;
-    this.previousOperand = "";
-    this.currentOperand = result;
-    this.operator = "";
-    this.displayCurrent.textContent = this.currentOperand;
+    this.displayPrevious.textContent = `${this.leftOperand} ${this.operator} ${this.rightOperand} =`;
+    this.leftOperand = result;
+    this.displayCurrent.textContent = this.leftOperand;
+    this.canReset = true;
   }
 }
 
