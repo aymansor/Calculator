@@ -11,16 +11,14 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="./main.js" defer></script>
 </head>
 
 <body>
   <div class="calculator">
     <div class="calculator__display">
-      <div class="calculator__display__header">
-
-      </div>
-      <span class="calculator__display__previous">5 x 5 =</span>
-      <span class="calculator__display__current">25</span>
+      <span class="calculator__display__previous"></span>
+      <span class="calculator__display__current"></span>
     </div>
     <div class="calculator__body">
       <button class="calculator__btn calculator__btn--clear" value="AC">AC</button>
@@ -33,26 +31,26 @@
       <button class="calculator__btn calculator__btn--modifier" value="del">
         <i class="fa-solid fa-delete-left"></i>
       </button>
-      <button class="calculator__btn" value="1">1</button>
-      <button class="calculator__btn" value="2">2</button>
-      <button class="calculator__btn" value="3">3</button>
-      <button class="calculator__btn calculator__btn--operator" value="+">
+      <button class="calculator__btn calculator__btn--digit" value="1">1</button>
+      <button class="calculator__btn calculator__btn--digit" value="2">2</button>
+      <button class="calculator__btn calculator__btn--digit" value="3">3</button>
+      <button class="calculator__btn calculator__btn--operator" value="/">
         <i class="fa-solid fa-divide"></i>
       </button>
-      <button class="calculator__btn" value="4">4</button>
-      <button class="calculator__btn" value="5">5</button>
-      <button class="calculator__btn" value="6">6</button>
+      <button class="calculator__btn calculator__btn--digit" value="4">4</button>
+      <button class="calculator__btn calculator__btn--digit" value="5">5</button>
+      <button class="calculator__btn calculator__btn--digit" value="6">6</button>
       <button class="calculator__btn calculator__btn--operator" value="x">
         <i class="fa-solid fa-xmark"></i>
       </button>
-      <button class="calculator__btn" value="7">7</button>
-      <button class="calculator__btn" value="8">8</button>
-      <button class="calculator__btn" value="9">9</button>
+      <button class="calculator__btn calculator__btn--digit" value="7">7</button>
+      <button class="calculator__btn calculator__btn--digit" value="8">8</button>
+      <button class="calculator__btn calculator__btn--digit" value="9">9</button>
       <button class="calculator__btn calculator__btn--operator" value="-">
         <i class="fa-solid fa-minus"></i>
       </button>
-      <button class="calculator__btn" value="0">0</button>
-      <button class="calculator__btn" value=".">.</button>
+      <button class="calculator__btn calculator__btn--digit" value="0">0</button>
+      <button class="calculator__btn calculator__btn--digit" value=".">.</button>
       <button class="calculator__btn calculator__btn--compute" value="=">
         <i class="fa-solid fa-equals"></i>
       </button>
