@@ -126,6 +126,10 @@ class Calculator {
     this.displayCurrent.textContent = this.rightOperand || "0";
   }
 
+  roundNumber(number, decimalPlaces) {
+    return Number(number.toFixed(decimalPlaces));
+  }
+
   compute() {
     let result;
     let prev = parseFloat(this.leftOperand);
@@ -155,6 +159,8 @@ class Calculator {
         return;
     }
 
+    result = this.roundNumber(result, 8);
+
     if (result.toString().length > 9) {
       result = result.toExponential(4);
     }
@@ -165,6 +171,7 @@ class Calculator {
     this.canReset = true;
   }
 }
+
 class KeyboardSupport {
   constructor(calculator) {
     this.calculator = calculator;
