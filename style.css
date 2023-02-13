@@ -232,12 +232,16 @@ body {
 /* ------------------------------------------------------------------------- */
 
 .calculator__credit {
-  text-decoration: none;
   grid-column: span 4;
-  text-align: center;
+  margin: var(--spacing-small) 0;
+  display: flex;
+  justify-content: center;
+}
+
+.calculator__credit__link {
+  text-decoration: none;
   font-size: var(--spacing-medium);
   opacity: 0.5;
-  margin: var(--spacing-small) 0;
   color: var(--clr-text-2);
 }
 
