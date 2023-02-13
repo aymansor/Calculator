@@ -1,5 +1,10 @@
 "use strict";
 
+/**
+ * Enum for the supported operators in the calculator.
+ * @readonly
+ * @enum {string}
+ */
 const Operators = Object.freeze({
   ADD: "+",
   SUBTRACT: "-",
@@ -7,7 +12,15 @@ const Operators = Object.freeze({
   DIVIDE: "÷",
 });
 
+/**
+ * The Calculator class that performs the mathematical operations.
+ * @class
+ */
 class Calculator {
+  /**
+   * Creates an instance of Calculator.
+   * @constructor
+   */
   constructor() {
     this.displayPrevious = document.querySelector(".calculator__display__previous");
     this.displayCurrent = document.querySelector(".calculator__display__current");
@@ -25,6 +38,10 @@ class Calculator {
     this.initEventListeners();
   }
 
+  /**
+   * Initializes event listeners needed for the calculator.
+   * @function
+   */
   initEventListeners() {
     this.buttons.forEach((button) => {
       button.addEventListener("click", () => {
@@ -33,6 +50,12 @@ class Calculator {
     });
   }
 
+  /**
+   * Processes input from user.
+   *
+   * @param {string} value - The value of the button clicked.
+   * @returns {void}
+   */
   processInput(value) {
     if (this.isDigit(value)) {
       this.processDigit(value);
@@ -51,14 +74,31 @@ class Calculator {
     }
   }
 
+  /**
+   * Determines if the given value is a digit.
+   * @function
+   * @param {string} value - The value to check.
+   * @returns {boolean} - Whether the value is a digit.
+   */
   isDigit(value) {
     return /[0-9\.]/.test(value);
   }
 
+  /**
+   * Determines if the given value is an operator.
+   * @function
+   * @param {string} value - The value to check.
+   * @returns {boolean} - Whether the value is an operator.
+   */
   isOperator(value) {
     return Object.values(Operators).includes(value);
   }
 
+  /**
+   * Processes a digit input.
+   * @function
+   * @param {string} value - The digit value.
+   */
   processDigit(value) {
     if (this.canReset) {
       this.clear();
@@ -80,6 +120,11 @@ class Calculator {
     this.displayCurrent.textContent = this.rightOperand;
   }
 
+  /**
+   * Processes an operator input.
+   * @function
+   * @param {string} value - The operator value.
+   */
   processOperator(value) {
     if (this.operator) {
       this.operator = value;
@@ -93,6 +138,10 @@ class Calculator {
     }
   }
 
+  /**
+   * Clears the calculator display and state.
+   * @function
+   */
   clear() {
     this.displayPrevious.textContent = "";
     this.displayCurrent.textContent = "0";
@@ -102,6 +151,10 @@ class Calculator {
     this.operator = "";
   }
 
+  /**
+   * Changes the sign of the right operand.
+   * @function
+   */
   changeSign() {
     if (this.rightOperand === "") {
       if (this.leftOperand === "") return;
@@ -114,6 +167,10 @@ class Calculator {
     this.displayCurrent.textContent = this.rightOperand;
   }
 
+  /**
+   * Converts the right operand to a percentage.
+   * @function
+   */
   percent() {
     if (this.rightOperand === "") return;
 
@@ -121,31 +178,74 @@ class Calculator {
     this.displayCurrent.textContent = this.rightOperand;
   }
 
+  /**
+   * Deletes the last digit from the right operand.
+   * @function
+   */
   delete() {
     this.rightOperand = this.rightOperand.slice(0, -1);
     this.displayCurrent.textContent = this.rightOperand || "0";
   }
 
+  /**
+   * Rounds a number to a specified number of decimal places.
+   * @function
+   * @param {number} number - The number to round.
+   * @param {number} decimalPlaces - The number of decimal places to round to.
+   * @returns {number} - The rounded number.
+   */
   roundNumber(number, decimalPlaces) {
     return Number(number.toFixed(decimalPlaces));
   }
 
+  /**
+   * Adds two numbers.
+   *
+   * @param {number} a - The first number to add.
+   * @param {number} b - The second number to add.
+   * @returns {number} The sum of `a` and `b`.
+   */
   add(a, b) {
     return a + b;
   }
 
+  /**
+   * Subtracts two numbers.
+   *
+   * @param {number} a - The number to subtract from.
+   * @param {number} b - The number to subtract.
+   * @returns {number} The difference of `a` and `b`.
+   */
   subtract(a, b) {
     return a - b;
   }
 
+  /**
+   * Multiplies two numbers.
+   *
+   * @param {number} a - The first number to multiply.
+   * @param {number} b - The second number to multiply.
+   * @returns {number} The product of `a` and `b`.
+   */
   multiply(a, b) {
     return a * b;
   }
 
+  /**
+   * Divides two numbers.
+   *
+   * @param {number} a - The number to be divided.
+   * @param {number} b - The number to divide by.
+   * @returns {number} The quotient of `a` and `b`.
+   */
   divide(a, b) {
     return a / b;
   }
 
+  /**
+   * Computes the result of the current calculation.
+   * @function
+   */
   compute() {
     let result;
     let prev = parseFloat(this.leftOperand);
@@ -188,12 +288,23 @@ class Calculator {
   }
 }
 
+/**
+ * Class to handle keyboard support for the calculator.
+ */
 class KeyboardSupport {
+  /**
+   * Creates an instance of KeyboardSupport.
+   * @param {Calculator} calculator - The calculator object
+   */
   constructor(calculator) {
     this.calculator = calculator;
     this.initEventListeners();
   }
 
+  /**
+   * Initializes event listeners for keyboard inputs.
+   * @returns {void}
+   */
   initEventListeners() {
     document.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === "=") {
