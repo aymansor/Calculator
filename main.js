@@ -130,6 +130,7 @@ class Calculator {
       this.operator = value;
       this.rightOperand = "";
       this.displayPrevious.textContent = `${this.leftOperand} ${this.operator}`;
+      this.canReset = false;
     } else {
       this.operator = value;
       this.leftOperand = this.rightOperand === "" ? "0" : this.rightOperand;
