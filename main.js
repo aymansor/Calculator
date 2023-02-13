@@ -20,6 +20,8 @@ class Calculator {
     this.operator = "";
     this.canReset = false;
 
+    this.keyboardSupport = new KeyboardSupport(this);
+
     this.initEventListeners();
   }
 
@@ -161,6 +163,34 @@ class Calculator {
     this.leftOperand = result;
     this.displayCurrent.textContent = this.leftOperand;
     this.canReset = true;
+  }
+}
+class KeyboardSupport {
+  constructor(calculator) {
+    this.calculator = calculator;
+    this.initEventListeners();
+  }
+
+  initEventListeners() {
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === "=") {
+        this.calculator.compute();
+      } else if (event.key === "Escape") {
+        this.calculator.clear();
+      } else if (event.key === "Backspace") {
+        this.calculator.delete();
+      } else if (event.key === "*") {
+        this.calculator.processOperator("x");
+      } else if (event.key === "/") {
+        this.calculator.processOperator("÷");
+      } else if (event.key === "+") {
+        this.calculator.processOperator("+");
+      } else if (event.key === "-") {
+        this.calculator.processOperator("-");
+      } else if (/^[0-9\.]$/.test(event.key)) {
+        this.calculator.processDigit(event.key);
+      }
+    });
   }
 }
 
