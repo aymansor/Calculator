@@ -43,6 +43,7 @@
   --spacing-large: 2rem;
 
   --border: 2px solid var(--clr-text-1);
+  --box-shadow-outline: 0 0 0 2px var(--clr-text-1);
 }
 
 /* ------------------------------------------------------------------------- */
@@ -170,7 +171,7 @@ body {
   background-color: var(--clr-calculator-body);
   border-radius: var(--spacing-medium);
   padding: var(--spacing-small);
-  outline: var(--border);
+  box-shadow: var(--box-shadow-outline);
   user-select: none;
 }
 
@@ -183,9 +184,8 @@ body {
   border: 0;
   margin: var(--spacing-small);
   border-radius: var(--border-radius-medium);
-  outline: var(--border);
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
-    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  box-shadow: var(--box-shadow-outline), rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   transition: box-shadow 150ms ease-in-out;
   opacity: 0.9;
 }
