@@ -245,6 +245,6 @@ body {
   color: var(--clr-text-2);
 }
 
-.calculator__credit:hover {
+.calculator__credit__link:hover {
   opacity: 1;
 }
