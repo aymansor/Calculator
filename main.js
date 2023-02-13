@@ -153,6 +153,10 @@ class Calculator {
         return;
     }
 
+    if (result.toString().length > 9) {
+      result = result.toExponential(4);
+    }
+
     this.displayPrevious.textContent = `${this.leftOperand} ${this.operator} ${this.rightOperand} =`;
     this.leftOperand = result;
     this.displayCurrent.textContent = this.leftOperand;
