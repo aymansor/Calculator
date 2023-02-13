@@ -130,6 +130,22 @@ class Calculator {
     return Number(number.toFixed(decimalPlaces));
   }
 
+  add(a, b) {
+    return a + b;
+  }
+
+  subtract(a, b) {
+    return a - b;
+  }
+
+  multiply(a, b) {
+    return a * b;
+  }
+
+  divide(a, b) {
+    return a / b;
+  }
+
   compute() {
     let result;
     let prev = parseFloat(this.leftOperand);
@@ -144,16 +160,16 @@ class Calculator {
 
     switch (this.operator) {
       case Operators.ADD:
-        result = prev + curr;
+        result = this.add(prev, curr);
         break;
       case Operators.SUBTRACT:
-        result = prev - curr;
+        result = this.subtract(prev, curr);
         break;
       case Operators.MULTIPLY:
-        result = prev * curr;
+        result = this.multiply(prev, curr);
         break;
       case Operators.DIVIDE:
-        result = prev / curr;
+        result = this.divide(prev, curr);
         break;
       default:
         return;
