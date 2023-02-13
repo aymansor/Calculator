@@ -101,7 +101,10 @@ class Calculator {
   }
 
   changeSign() {
-    if (this.rightOperand === "") return;
+    if (this.rightOperand === "") {
+      if (this.leftOperand === "") return;
+      this.rightOperand = this.leftOperand;
+    }
 
     this.rightOperand =
       this.rightOperand.charAt(0) === "-" ? this.rightOperand.slice(1) : "-" + this.rightOperand;
