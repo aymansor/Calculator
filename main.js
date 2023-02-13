@@ -12,6 +12,8 @@ const Operators = Object.freeze({
   DIVIDE: "÷",
 });
 
+/* ---------------------------- Calculator Class --------------------------- */
+
 /**
  * The Calculator class that performs the mathematical operations.
  * @class
@@ -289,6 +291,8 @@ class Calculator {
   }
 }
 
+/* ------------------------- KeyboardSupport Class ------------------------- */
+
 /**
  * Class to handle keyboard support for the calculator.
  */
@@ -329,4 +333,36 @@ class KeyboardSupport {
   }
 }
 
+/* --------------------------- Utility Functions --------------------------- */
+
+/**
+ * Copies the content of the calculator display to the clipboard
+ * @function
+ */
+
+const CopyToClipboard = (calculator) => {
+  const displayCurrent = calculator.displayCurrent;
+  navigator.clipboard
+    .writeText(displayCurrent.textContent)
+    .then(function () {})
+    .catch(function () {
+      alert("error copying to clipboard");
+    });
+
+  displayCurrent.classList.add("active");
+
+  setTimeout(() => {
+    displayCurrent.classList.remove("active");
+  }, 1000);
+};
+
+/* ------------------------------ Entry point ------------------------------ */
+
+// Initialize a new instance of the Calculator class
 const calculator = new Calculator();
+
+// Attach click event listener to calculator display current element to copy
+// its text content to clipboard using CopyToClipboard function
+calculator.displayCurrent.addEventListener("click", () => {
+  CopyToClipboard(calculator);
+});

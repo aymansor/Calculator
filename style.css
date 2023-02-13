@@ -160,8 +160,40 @@ body {
 }
 
 .calculator__display__current {
+  position: relative;
   font-size: var(--fs-large);
   height: 70%;
+}
+
+@media (hover: hover) {
+  .calculator__display__current:hover::before {
+    display: block;
+  }
+}
+
+.calculator__display__current::before {
+  content: "\f0c5";
+  font-family: FontAwesome;
+  font-size: var(--fs-small);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0.8;
+  display: none;
+}
+
+.calculator__display__current::after {
+  content: "copied";
+  font-size: var(--fs-small);
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  display: none;
+}
+
+.calculator__display__current.active::before,
+.calculator__display__current.active::after {
+  display: block;
 }
 
 .calculator__display__previous {
