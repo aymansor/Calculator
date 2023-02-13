@@ -67,6 +67,8 @@ class Calculator {
 
     if (value === "." && this.rightOperand === "") {
       this.rightOperand = "0.";
+    } else if (value === "0" && this.rightOperand === "0") {
+      return;
     } else if (value === "." && this.rightOperand.includes(".")) {
       return;
     } else {
