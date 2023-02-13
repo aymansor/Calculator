@@ -85,7 +85,7 @@ class Calculator {
       this.displayPrevious.textContent = `${this.leftOperand} ${this.operator}`;
     } else {
       this.operator = value;
-      this.leftOperand = this.rightOperand;
+      this.leftOperand = this.rightOperand === "" ? "0" : this.rightOperand;
       this.rightOperand = "";
       this.displayPrevious.textContent = `${this.leftOperand} ${this.operator}`;
     }
