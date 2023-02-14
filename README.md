@@ -23,6 +23,14 @@
 
 ## Usage
 
+You can visit the live demo or clone the repository using Git
+
+### Option 1: Visit the live demo
+
+To use the Calculator, visit the [live demo](https://aymansor.github.io/Calculator/)!
+
+### Option 2: Clone using Git
+
 ```bash
 # Clone this repository
 $ git clone https://github.com/aymansor/Calculator.git
