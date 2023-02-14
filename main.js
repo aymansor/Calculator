@@ -280,7 +280,7 @@ class Calculator {
 
     result = this.roundNumber(result, 8);
 
-    if (result.toString().length > 9) {
+    if (result.toString().length > 10) {
       result = result.toExponential(4);
     }
 
