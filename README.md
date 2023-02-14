@@ -1,6 +1,16 @@
 # Calculator
 
-A simple calculator built with HTML, CSS, and JavaScript.
+<h4 align="center">A simple calculator built with HTML, CSS, and JavaScript.</h4>
+
+<p align="center">
+  <a href="#features">Features</a> •
+  <a href="#usage">Usage</a> •
+  <a href="#keyboard-support">Keyboard Support</a>
+</p>
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/aymansor/Calculator/main/img/screenshot.png" width="50%" height="50%">
+</div>
 
 ## Features
 
